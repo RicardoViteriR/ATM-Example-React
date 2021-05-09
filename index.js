@@ -30,17 +30,18 @@ const ATMDeposit = ({ onChange, isDeposit, isValid }) => {
     };
   
   
-    let maxWithdrawal = (totalBalance, withDrawalAmount) => {
-      if (totalBalance >= withDrawalAmount) {
-        return totalBalance - withDrawalAmount
+    const withdraw = (accountBalance, withDrawalAmount) => {
+      if (accountBalance >= withDrawalAmount) {
+        return accountBalance - withDrawalAmount
       };
-      return totalBalance;
+      alert(`Not enough balance in account!` )
+      return accountBalance;
   
     }
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      let newTotal = isDeposit ? totalState + deposit : maxWithdrawal(totalState, deposit);
+      let newTotal = isDeposit ? totalState + deposit : withdraw(totalState, deposit);
       setTotalState(newTotal);
       setValidTransaction(false);
   
